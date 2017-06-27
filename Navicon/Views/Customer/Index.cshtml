@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Navicon.Models.Customer>
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th><b>Id</b></th>
+        <th><b>Name</b></th>
+        <th><b>Surname</b></th>
+        <td><b>Patronymic</b></td>
+        <td><b>Sex</b></td>
+        <td><b>BirthDate</b></td>
+        <td><b>Age</b></td>
+        <td><b>Delete</b></td>
+        <td><b>Edit</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>@customer.Id</td>
+            @*<td>@Html.ActionLink(customer.Name, "Edit", "Customer", new {id = customer.Id}, null)</td>*@
+            <td>@Html.ActionLink(customer.Name, "Details", "Customer", new {id = customer.Id}, null)</td>
+            <td>@customer.Surname</td>
+            <td>@customer.Patronymic</td>
+            <td>@customer.Sex</td>
+            @*<td>@customer.BirthDate:regex(\\d{1,2}\\/\\d{1,2}\\/\\d\\d\\d\\d)</td>*@
+            <td>@customer.BirthDate.ToString("dd/MM/yyyy")</td>
+            <td>@customer.Age</td>
+            <td>
+                <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+            </td>
+            <td>@Html.ActionLink("Edit", "Edit", "Customer", new { id = customer.Id }, null)</td>
+
+        </tr>
+    }
+    </tbody>
+
+
+
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#customers").DataTable();
+
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result)
+                {
+                   if (result) {
+                       $.ajax({
+                           url: "/api/customers/" + button.attr("data-customer-id"),
+                           method: "DELETE",
+                           success: function () {
+                               table.row(button.parents("tr")).remove().draw();
+                           }
+                       });
+                   } 
+                });
+
+             });
+        });
+    </script>
+}

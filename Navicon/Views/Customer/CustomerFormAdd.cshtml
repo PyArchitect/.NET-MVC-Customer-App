@@ -1,0 +1,122 @@
+﻿@model Navicon.ViewModels.NewCustomerViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Customer</h2>
+
+@using (Html.BeginForm("Add", "Customer"))
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(m =>m.Customer.Name)  
+        @Html.TextBoxFor(m=> m.Customer.Name, new {@class="form-control"})
+        @Html.ValidationMessageFor(m=>m.Customer.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Surname)
+        @Html.TextBoxFor(m => m.Customer.Surname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Surname)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Patronymic)
+        @Html.TextBoxFor(m => m.Customer.Patronymic, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Patronymic)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Sex)
+        @Html.TextBoxFor(m => m.Customer.Sex, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Sex)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.BirthDate) 
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Age)
+        @Html.TextBoxFor(m => m.Customer.Age, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Age)
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Description)
+        @Html.TextBoxFor(m => m.Customer.Description, new { @class = "form-control" })
+       
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Customer.Id)
+        @Html.TextBoxFor(m => m.Customer.Id, new { @class = "form-control" })
+       
+    </div>*@
+
+
+    <button id="SubmitButton" type="submit" class="btn btn-primary">Add</button>
+}
+
+@section scripts
+{
+    <script>
+        $(function() {
+            $("#SubmitButton").on("click",function() {
+                var r = confirm("Are you sure you want to add customer?");
+                if (r == false) {
+                    return false;
+                }
+            });
+        });
+
+    </script>
+
+}
+    @*<script>
+        
+        $(document).ready(function() {
+            $("#SubmitButton").on("click",
+                function(e) {
+                    e.preventDefault();
+                    var currentForm = this;
+                    bootbox.confirm("Are you sure you want to add customer?",
+                        function(result) {
+                            if (result) {
+                                $(document).submit;
+
+                            }
+                        });
+                });
+        });
+    </script>*@
+    
+   
+    
+    
+
+
+   
+
+
+@*@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#customers").DataTable();
+
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
+}*@ 

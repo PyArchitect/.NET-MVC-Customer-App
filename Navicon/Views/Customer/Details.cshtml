@@ -1,0 +1,17 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Navicon.Models.Customer
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name @Model.Surname</h2>
+
+<ul>
+    <li>Birthday: @Model.BirthDate.ToString("dd/MM/yyyy")</li>
+    @if (!Model.Description.IsNullOrWhiteSpace())
+    {
+        <li>Descrption: @Model.Description</li>  
+    }  
+    
+</ul>

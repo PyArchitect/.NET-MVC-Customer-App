@@ -1,0 +1,23 @@
+﻿@*@model Navicon.Models.Customer*@
+
+
+@model Navicon.ViewModels.CustomerTableViewModel
+@{
+    ViewBag.Title = "CustomerTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (Model.Clients.Count == 0)
+{
+    <p>No one has rented this movie before</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Clients)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}

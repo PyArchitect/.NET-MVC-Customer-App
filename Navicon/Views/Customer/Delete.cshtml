@@ -1,0 +1,23 @@
+﻿@model Navicon.ViewModels.NewCustomerViewModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Customer/Customers</h2>
+
+@using (Html.BeginForm("Delete", "Customer"))
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @*@Html.LabelFor(m =>m.Customer.Id)*@
+        <label>Insert the ID's of the customers you want to delete (separation by comma, without whitespaces)</label>
+        @*@Html.TextBoxFor(m=> m.Customer.Id, new {@class="form-control"})*@
+        
+        @Html.TextBoxFor(m => m.CustomersIDs.DescriptionIDs, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomersIDs.DescriptionIDs)
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Delete</button>
+    }
+
