@@ -8,7 +8,7 @@ In app one can add/delete/edit customer as well as watch every individual custom
 
 
 <p align="center">
-<a href="url"><img src="https://github.com/PyArchitect/.NET-MVC-Customer-App/blob/master/NaviconScr1.png" align="left" height="1280" width="720" ></a>
+<a href="url"><img src="https://github.com/PyArchitect/.NET-MVC-Customer-App/blob/master/NaviconScr1.png" align="left"  ></a>
 </p>
 <p align="center">
 <a href="url"><img src="https://github.com/PyArchitect/.NET-MVC-Customer-App/blob/master/NaviconScr2.png" align="left" height="1280" width="720" ></a>
